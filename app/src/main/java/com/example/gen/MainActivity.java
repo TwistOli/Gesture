@@ -11,13 +11,17 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private GestureLibrary gestureLib;
+    private String bloknitikText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +50,29 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,
                             "Ваш жест : " + prediction.name,
                             Toast.LENGTH_LONG).show();
+                    bloknitikText = bloknitikText + prediction.name;
+                    TextView gg = (TextView) findViewById(R.id.gg);
+                    gg.setText(bloknitikText);
                 }
             }
 
         }
     };
+
+    public void onClick(View view){
+        bloknitikText = "";
+        TextView gg = (TextView) findViewById(R.id.gg);
+        gg.setText(bloknitikText);
+    }
+
+    public void onClick2(View view){
+        if (bloknitikText.length() != 0){
+            bloknitikText = bloknitikText.substring(0, bloknitikText.length() - 1);
+            TextView gg = (TextView) findViewById(R.id.gg);
+
+
+            gg.setText(bloknitikText);
+        }
+
+    }
 }
